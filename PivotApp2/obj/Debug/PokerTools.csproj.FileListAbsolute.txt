@@ -1,0 +1,17 @@
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\Bin\Debug\ApplicationIcon.png
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\Bin\Debug\PivotApp2.dll
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\Bin\Debug\PivotApp2.pdb
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\Bin\Debug\AppManifest.xaml
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\Bin\Debug\PivotApp2.xap
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\Bin\Debug\Microsoft.Phone.Controls.dll
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\Bin\Debug\Microsoft.Phone.Controls.Toolkit.dll
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\Bin\Debug\Microsoft.Phone.Controls.xml
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\Bin\Debug\Microsoft.Phone.Controls.Toolkit.pdb
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\Bin\Debug\Microsoft.Phone.Controls.Toolkit.xml
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\obj\Debug\App.g.i.cs
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\obj\Debug\MainPage.g.i.cs
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\obj\Debug\PivotApp2.g.resources
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\obj\Debug\PivotApp2.dll
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\obj\Debug\PivotApp2.pdb
+C:\Users\surfrider\Documents\Visual Studio 2010\Projects\PokerTools\PivotApp2\obj\Debug\XapCacheFile.xml

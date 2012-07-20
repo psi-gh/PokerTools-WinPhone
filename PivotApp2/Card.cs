@@ -25,7 +25,7 @@ namespace PokerTools
         }
 
         public Card(Suits suit, Ranks rank)
-        {
+        { 
             this.Rank = rank;
             this.Suit = suit;
             this.Image = "/PivotApp2;component/Images/";

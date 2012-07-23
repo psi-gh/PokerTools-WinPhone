@@ -68,25 +68,25 @@ namespace PokerTools
 
         private void movePanels(int up, int middle, int bottom, double time)
         {
-            Duration duration = new Duration(TimeSpan.FromSeconds(time));
+            var duration = new Duration(TimeSpan.FromSeconds(time));
 
-            Storyboard storyboard = new Storyboard();
+            var storyboard = new Storyboard();
 
-            DoubleAnimation doubleAnimation1 = new DoubleAnimation();
+            var doubleAnimation1 = new DoubleAnimation();
             doubleAnimation1.Duration = duration;
             doubleAnimation1.To = up;
             Storyboard.SetTarget(doubleAnimation1, this.playersCardsGrid);
             Storyboard.SetTargetProperty(doubleAnimation1, new PropertyPath("(Canvas.Top)"));
             storyboard.Children.Add(doubleAnimation1);
 
-            DoubleAnimation doubleAnimation2 = new DoubleAnimation();
+            var doubleAnimation2 = new DoubleAnimation();
             doubleAnimation2.Duration = duration;
             doubleAnimation2.To = middle;
             Storyboard.SetTarget(doubleAnimation2, this.tableCardsGrid);
             Storyboard.SetTargetProperty(doubleAnimation2, new PropertyPath("(Canvas.Top)"));
             storyboard.Children.Add(doubleAnimation2);
 
-            DoubleAnimation doubleAnimation3 = new DoubleAnimation();
+            var doubleAnimation3 = new DoubleAnimation();
             doubleAnimation3.Duration = duration;
             doubleAnimation3.To = bottom;
             Storyboard.SetTarget(doubleAnimation3, this.bottomGrid);
@@ -111,19 +111,15 @@ namespace PokerTools
         private void moveCard(Image card, Grid cardGrid, double time)
         {
             var offset = (ItemsControl) this.playersCardsGrid.Children[1];
-            var okay = offset.ItemsPanel;
-
+//            var okay = offset.ItemsPanel;
             
             //Image cardPlace = (Image)offset.Children[0];
             var cardPlace = offset;
 
-            var cardObject = (ItemViewModel)card.DataContext;
+            var cardObject = (ViewModels.CardViewModel)card.DataContext;
 
             // карта, которая двигается
-            var movingCard = new Image();
-            movingCard.Source = card.Source;
-            movingCard.Height = card.Height;
-            movingCard.Width = card.Width;
+            var movingCard = new Image {Source = card.Source, Height = card.Height, Width = card.Width};
             Canvas.SetZIndex(movingCard, 1);
 
             var transform = canvasFirstPivotItem.TransformToVisual(Application.Current.RootVisual);
@@ -151,26 +147,22 @@ namespace PokerTools
             this.canvasFirstPivotItem.Children.Add(movingCard);
 
 
-            cardObject.Image = "/PivotApp2;component/Images/cardplace_dark@2x.png";
+            cardObject.CardImage = "/PivotApp2;component/Images/cardplace_dark@2x.png";
 
 
             // Смещение от выбранной карты до конечного положения (на какое расстояние двигать)
             offsetX = destinationLocation.X - sourceLocation.X;
             offsetY = destinationLocation.Y - sourceLocation.Y;
 
-            Duration duration = new Duration(TimeSpan.FromSeconds(time));
-            Storyboard storyboard = new Storyboard();
+            var duration = new Duration(TimeSpan.FromSeconds(time));
+            var storyboard = new Storyboard();
 
-            DoubleAnimation animationMoveX = new DoubleAnimation();
-            animationMoveX.Duration = duration;
-            animationMoveX.By = offsetX;
+            var animationMoveX = new DoubleAnimation {Duration = duration, By = offsetX};
             Storyboard.SetTarget(animationMoveX, (Image)movingCard);
             Storyboard.SetTargetProperty(animationMoveX, new PropertyPath("(Canvas.Left)"));
             storyboard.Children.Add(animationMoveX);
 
-            DoubleAnimation animationMoveY = new DoubleAnimation();
-            animationMoveY.Duration = duration;
-            animationMoveY.By = offsetY;
+            var animationMoveY = new DoubleAnimation {Duration = duration, By = offsetY};
             Storyboard.SetTarget(animationMoveY, (Image)movingCard);
             Storyboard.SetTargetProperty(animationMoveY, new PropertyPath("(Canvas.Top)"));
             storyboard.Children.Add(animationMoveY);

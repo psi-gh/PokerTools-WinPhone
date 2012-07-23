@@ -99,7 +99,7 @@
                                 <Image Source="/PivotApp2;component/Images/cardBoardBackground@2x.png" Height="350" Width="442" Stretch="UniformToFill"></Image>
                             </StackPanel>
 
-                            <ItemsControl x:Name="cardBoardPanel" ItemsSource="{Binding testMyCol}" Margin="25,15,25,0">
+                            <ItemsControl x:Name="cardBoardPanel" ItemsSource="{Binding TestMyCol}" Margin="25,15,25,0">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <toolkit:WrapPanel/>
@@ -108,7 +108,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Canvas Height="100" Width="80">
-                                            <Image Height="100" Width="80" Source="{Binding Image}" Margin="0,0,0,10" Tap="Image_Tap_1"></Image>
+                                            <Image Height="100" Width="80" Source="{Binding CardImage}" Margin="0,0,0,10" Tap="Image_Tap_1"></Image>
                                         </Canvas>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>

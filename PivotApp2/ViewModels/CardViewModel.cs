@@ -53,10 +53,6 @@ namespace PokerTools.ViewModels
             }
         }
 
-        public CardViewModel()
-        {
-        }
-
         private void NotifyPropertyChanged(string propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;

@@ -2,6 +2,9 @@
 bin
 PivotApp2/Bin
 obj
+_ReSharper.PokerTools
+PivotApp2/Settings.StyleCop
+PivotApp2/StyleCop.Cache
 *.suo
 # mstest test results
 TestResults

@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.Collections;
 using System.Linq;
+using PokerTools.ViewModels;
 
 
 namespace PokerTools
@@ -26,7 +27,7 @@ namespace PokerTools
             this.playerCards = new ObservableCollection<ItemViewModel>();
             this.tableCards = new ObservableCollection<ItemViewModel>();
             this.allSpades = new ObservableCollection<ItemViewModel>();
-            this.testMyCol = new CardsCollection("/PivotApp2;component/Images/cardplace_dark@2x.png", 10);
+            this.TestMyCol = new CardsCollection("/PivotApp2;component/Images/cardplace_dark@2x.png", 10);
         }
 
         /// <summary>
@@ -43,7 +44,7 @@ namespace PokerTools
         
         public ObservableCollection<ItemViewModel> tableCards { get; set; }
 
-        public CardsCollection testMyCol { get; set; }
+        public CardsCollection TestMyCol { get; set; }
 
         private string _sampleProperty = "Пример значения свойства среды выполнения";
         /// <summary>
@@ -106,8 +107,12 @@ namespace PokerTools
             this.allSpades.Add(new ItemViewModel() { CardName = "D", Image = "/PivotApp2;component/Images/Cards/3piki.png" });
             this.allSpades.Add(new ItemViewModel() { CardName = "K", Image = "/PivotApp2;component/Images/Cards/3piki.png" });
             this.allSpades.Add(new ItemViewModel() { CardName = "A", Image = "/PivotApp2;component/Images/Cards/3piki.png" });
-            
-            
+
+            this.TestMyCol.AddCard(new CardViewModel() { CardName = "2", CardImage = "/PivotApp2;component/Images/Cards/3piki.png" });
+            this.TestMyCol.AddCard(new CardViewModel() { CardName = "2", CardImage = "/PivotApp2;component/Images/Cards/3piki.png" });
+            this.TestMyCol.AddCard(new CardViewModel() { CardName = "2", CardImage = "/PivotApp2;component/Images/Cards/3piki.png" });
+            this.TestMyCol.AddCard(new CardViewModel() { CardName = "2", CardImage = "/PivotApp2;component/Images/Cards/3piki.png" });
+
             //CreateItemsSource(items);
             this.IsDataLoaded = true;
         }

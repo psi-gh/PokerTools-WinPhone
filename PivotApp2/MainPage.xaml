@@ -41,12 +41,12 @@
                             <ItemsControl x:Name="upperPanel" ItemsSource="{Binding playerCards}" Margin="25,20,0,0">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <toolkit:WrapPanel x:Name="playerWrapPanel"/>
+                                        <toolkit:WrapPanel Name="playerWrapPanel"/>
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Image Height="100" Width="80" Source="{Binding Image}"></Image>
+                                        <Image Height="100" Width="80" Source="{Binding CardImage}"></Image>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -67,7 +67,7 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Image Height="100" Width="80" Source="{Binding Image}" Tap="Image_Tap"></Image>
+                                        <Image Height="100" Width="80" Source="{Binding CardImage}" Tap="Image_Tap"></Image>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

@@ -1,32 +1,23 @@
-﻿using System;
-using System.ComponentModel;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Collections.ObjectModel;
-using System.Collections;
-using System.Linq;
-using PokerTools.ViewModels;
-
-
-namespace PokerTools
+﻿namespace PokerTools
 {
+    using System;
+    using System.ComponentModel;
+    using System.Collections.ObjectModel;
+    using System.Collections;
+    using System.Linq;
+    using ViewModels;
+
     public class MainViewModel : INotifyPropertyChanged
     {
         public MainViewModel()
         {
             this.items = new ObservableCollection<ItemViewModel>();
-            this.playerCards = new ObservableCollection<ItemViewModel>();
-            this.tableCards = new ObservableCollection<ItemViewModel>();
+            //this.playerCards = new ObservableCollection<ItemViewModel>();
+            //this.tableCards = new ObservableCollection<ItemViewModel>();
             this.allSpades = new ObservableCollection<ItemViewModel>();
+
+            this.playerCards = new CardsCollection("/PivotApp2;component/Images/cardplace_h@2x.png", 2);
+            this.tableCards = new CardsCollection("/PivotApp2;component/Images/cardplace_h@2x.png", 5);
             this.TestMyCol = new CardsCollection("/PivotApp2;component/Images/cardplace_dark@2x.png", 10);
         }
 
@@ -40,11 +31,15 @@ namespace PokerTools
         
         public ObservableCollection<ItemViewModel> allSpades { get; set; }
         
-        public ObservableCollection<ItemViewModel> playerCards { get; set; }
+        //public ObservableCollection<ItemViewModel> playerCards { get; set; }
         
-        public ObservableCollection<ItemViewModel> tableCards { get; set; }
+        //public ObservableCollection<ItemViewModel> tableCards { get; set; }
 
         public CardsCollection TestMyCol { get; set; }
+
+        public CardsCollection playerCards { get; set; }
+
+        public CardsCollection tableCards { get; set; }
 
         private string _sampleProperty = "Пример значения свойства среды выполнения";
         /// <summary>
@@ -85,14 +80,14 @@ namespace PokerTools
             this.items.Add(new ItemViewModel() { CardName = "51", Image = "/PivotApp2;component/Images/Cards/2chervi.png" });
             this.items.Add(new ItemViewModel() { CardName = "61", Image = "/PivotApp2;component/Images/Cards/2chervi.png" });
 
-            this.tableCards.Add(new ItemViewModel() { CardName = "31", Image = "/PivotApp2;component/Images/cardplace_h@2x.png" });
-            this.tableCards.Add(new ItemViewModel() { CardName = "31", Image = "/PivotApp2;component/Images/cardplace_h@2x.png" });
-            this.tableCards.Add(new ItemViewModel() { CardName = "31", Image = "/PivotApp2;component/Images/cardplace_h@2x.png" });
-            this.tableCards.Add(new ItemViewModel() { CardName = "31", Image = "/PivotApp2;component/Images/cardplace_h@2x.png" });
-            this.tableCards.Add(new ItemViewModel() { CardName = "31", Image = "/PivotApp2;component/Images/cardplace_h@2x.png" });
+            //this.tableCards.Add(new ItemViewModel() { CardName = "31", CardImage = "/PivotApp2;component/Images/cardplace_h@2x.png" });
+            //this.tableCards.Add(new ItemViewModel() { CardName = "31", Image = "/PivotApp2;component/Images/cardplace_h@2x.png" });
+            //this.tableCards.Add(new ItemViewModel() { CardName = "31", Image = "/PivotApp2;component/Images/cardplace_h@2x.png" });
+            //this.tableCards.Add(new ItemViewModel() { CardName = "31", Image = "/PivotApp2;component/Images/cardplace_h@2x.png" });
+            //this.tableCards.Add(new ItemViewModel() { CardName = "31", Image = "/PivotApp2;component/Images/cardplace_h@2x.png" });
 
-            this.playerCards.Add(new ItemViewModel() { CardName = "31", Image = "/PivotApp2;component/Images/cardplace_h@2x.png" });
-            this.playerCards.Add(new ItemViewModel() { CardName = "31", Image = "/PivotApp2;component/Images/cardplace_h@2x.png" });
+            //this.playerCards.Add(new CardViewModel() { CardName = "31", CardImage = "/PivotApp2;component/Images/cardplace_h@2x.png" });
+            //this.playerCards.Add(new CardViewModel() { CardName = "31", CardImage = "/PivotApp2;component/Images/cardplace_h@2x.png" });
 
             this.allSpades.Add(new ItemViewModel() { CardName = "2", Image = "/PivotApp2;component/Images/Cards/2chervi.png" });
             this.allSpades.Add(new ItemViewModel() { CardName = "3", Image = "/PivotApp2;component/Images/Cards/3piki.png" });

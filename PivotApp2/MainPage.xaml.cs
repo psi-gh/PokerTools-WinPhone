@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -14,12 +15,15 @@ using System.Windows.Media.Imaging;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Collections;
+using PokerTools.ViewModels;
 
 namespace PokerTools
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        bool isCardBoardOpened;
+        private bool isCardBoardOpened;
+
+        private bool moveTo; // 0 playerCards, 1 cardBoard
 
         // Конструктор
         public MainPage()
@@ -33,15 +37,14 @@ namespace PokerTools
 
             var cards = new Cards();
 
-            var im = new Image();
             //Uri uri = new Uri("/PivotApp2;component/Images/2kresti.png", UriKind.Relative); // Resource 
             //BitmapImage imgSource = new BitmapImage(uri);
-            BitmapImage bi = new BitmapImage();
+            var bi = new BitmapImage();
             bi.SetSource(Application.GetResourceStream(new Uri(@"/PivotApp2;component/Images/Cards/2kresti.png", UriKind.Relative)).Stream);
-            im.Source = bi;
-            im.Height = 100;
-            im.Width = 80;
-		}
+            var im = new Image {Source = bi, Height = 100, Width = 80};
+            this.moveTo = false;
+
+        }
 
         // Загрузка данных для элементов ViewModel
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
@@ -108,15 +111,38 @@ namespace PokerTools
         //которая закончила передвижение
         //уничтожение картинки с картой, котоаря двигалась
 
-        private void moveCard(Image card, Grid cardGrid, double time)
+        private void moveCard(Image card, bool moveto, double time)
         {
+            //System.Windows.MessageBox.Show(App.ViewModel.TestMyCol.IndexOf((temp)).ToString(CultureInfo.InvariantCulture));
+
+            Grid gridToMove;
+            CardsCollection cardsCollecton;
+
+            if (moveto == false)
+            {
+                gridToMove = this.playersCardsGrid;
+                cardsCollecton = App.ViewModel.playerCards;
+            }
+            else
+            {
+                gridToMove = this.tableCardsGrid;
+                cardsCollecton = App.ViewModel.tableCards;
+            }
+
             var offset = (ItemsControl) this.playersCardsGrid.Children[1];
-//            var okay = offset.ItemsPanel;
-            
+            //var okay = offset.ItemsPanel;
+
+            //var r = upperPanel.FindName("playerWrapPanel");
             //Image cardPlace = (Image)offset.Children[0];
             var cardPlace = offset;
 
             var cardObject = (ViewModels.CardViewModel)card.DataContext;
+
+            if (cardObject.CardName == "emptyCard")
+                return;
+
+            if (App.ViewModel.playerCards.Count > 1)
+                return;
 
             // карта, которая двигается
             var movingCard = new Image {Source = card.Source, Height = card.Height, Width = card.Width};
@@ -126,11 +152,18 @@ namespace PokerTools
             // Положение главного канваса
             var coordsOfMainCanvas = transform.Transform(new Point(0, 0));
 
-            transform = cardPlace.TransformToVisual(Application.Current.RootVisual);
+            //transform = cardPlace.TransformToVisual(Application.Current.RootVisual);
+            //// Положение конечной карты, куда мы перемещаемся
+            //var destinationLocation = transform.Transform(new Point(0, 0));
+            //destinationLocation.X += card.Width;
+            
+            //Вычисляем абсолютное положение грида
+            transform = this.playersCardsGrid.TransformToVisual(Application.Current.RootVisual);
             // Положение конечной карты, куда мы перемещаемся
             var destinationLocation = transform.Transform(new Point(0, 0));
-            destinationLocation.X += card.Width;
-            
+            destinationLocation.X += 25;
+            destinationLocation.Y += 20;
+            destinationLocation.X += card.Width * (App.ViewModel.playerCards.Count);
 
             transform = card.TransformToVisual(Application.Current.RootVisual);
             // Положение карты, на которую нажали
@@ -146,9 +179,10 @@ namespace PokerTools
             // Создаем карту, которая появляется на месте выбранной карты поверх всех элементов
             this.canvasFirstPivotItem.Children.Add(movingCard);
 
+            var cardForAdd = new CardViewModel() { CardImage = cardObject.CardImage, CardName = cardObject.CardName };
 
-            cardObject.CardImage = "/PivotApp2;component/Images/cardplace_dark@2x.png";
-
+            //cardObject.CardImage = "/PivotApp2;component/Images/cardplace_dark@2x.png";
+            App.ViewModel.TestMyCol.RemoveCard((CardViewModel)card.DataContext);
 
             // Смещение от выбранной карты до конечного положения (на какое расстояние двигать)
             offsetX = destinationLocation.X - sourceLocation.X;
@@ -168,6 +202,11 @@ namespace PokerTools
             storyboard.Children.Add(animationMoveY);
 
             storyboard.Begin();
+            storyboard.Completed += (sender, args) =>
+            {
+                cardsCollecton.AddCard(cardForAdd);
+                this.canvasFirstPivotItem.Children.Remove(movingCard);
+            };
         }
 
         private void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -186,16 +225,12 @@ namespace PokerTools
 
         private void Image_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            this.moveCard((Image)sender, this.playersCardsGrid, 0.5);
+            this.moveCard((Image)sender, moveTo, 0.3);
             //App.ViewModel.allSpades.RemoveAt(1);
             //var itemForDelete = App.ViewModel.allSpades.Where( (ItemViewModel a) => 
             //    a.Image == ((Image)sender).Source[0].ToString() );
             //App.ViewModel.allSpades.Remove(itemForDelete.First());
-                
         }
         //System.Windows.MessageBox.Show("qwe");
     }
-
-
-
 }

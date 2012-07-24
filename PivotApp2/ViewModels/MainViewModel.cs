@@ -107,6 +107,12 @@
             this.TestMyCol.AddCard(new CardViewModel() { CardName = "2", CardImage = "/PivotApp2;component/Images/Cards/3piki.png" });
             this.TestMyCol.AddCard(new CardViewModel() { CardName = "2", CardImage = "/PivotApp2;component/Images/Cards/3piki.png" });
             this.TestMyCol.AddCard(new CardViewModel() { CardName = "2", CardImage = "/PivotApp2;component/Images/Cards/3piki.png" });
+            this.TestMyCol.AddCard(new CardViewModel() { CardName = "2", CardImage = "/PivotApp2;component/Images/Cards/3piki.png" });
+            this.TestMyCol.AddCard(new CardViewModel() { CardName = "2", CardImage = "/PivotApp2;component/Images/Cards/3piki.png" });
+            this.TestMyCol.AddCard(new CardViewModel() { CardName = "2", CardImage = "/PivotApp2;component/Images/Cards/3piki.png" });
+            this.TestMyCol.AddCard(new CardViewModel() { CardName = "2", CardImage = "/PivotApp2;component/Images/Cards/3piki.png" });
+            this.TestMyCol.AddCard(new CardViewModel() { CardName = "2", CardImage = "/PivotApp2;component/Images/Cards/3piki.png" });
+            this.TestMyCol.AddCard(new CardViewModel() { CardName = "2", CardImage = "/PivotApp2;component/Images/Cards/3piki.png" });
 
             //CreateItemsSource(items);
             this.IsDataLoaded = true;

@@ -99,22 +99,8 @@ namespace PokerTools
             storyboard.Begin();
         }
 
-        //private void moveCard2(Image card,
-
-        // Что мне сейчас надо сделать?
-        // По щелчку на карте карта перемещается на экране, а в программе в массивах перемещаются элементы
-        // 1. метод move_card который вызывается по нажатию на кнопку
-        // параметры: Image карта, <Panel?> куда двигать карту
-        //удаляет карту из картборда (она исчезает с экрана)
-        //рисует на ее месте эту же карту и двигает к месту
-        //добавляет к нужному массиву удаленную карту (она появляется на экране под нарисованной картой
-        //которая закончила передвижение
-        //уничтожение картинки с картой, котоаря двигалась
-
         private void moveCard(Image card, bool moveto, double time)
         {
-            //System.Windows.MessageBox.Show(App.ViewModel.TestMyCol.IndexOf((temp)).ToString(CultureInfo.InvariantCulture));
-
             Grid gridToMove;
             CardsCollection cardsCollecton;
 
@@ -129,19 +115,12 @@ namespace PokerTools
                 cardsCollecton = App.ViewModel.tableCards;
             }
 
-            var offset = (ItemsControl) this.playersCardsGrid.Children[1];
-            //var okay = offset.ItemsPanel;
-
-            //var r = upperPanel.FindName("playerWrapPanel");
-            //Image cardPlace = (Image)offset.Children[0];
-            var cardPlace = offset;
-
             var cardObject = (ViewModels.CardViewModel)card.DataContext;
 
             if (cardObject.CardName == "emptyCard")
                 return;
 
-            if (App.ViewModel.playerCards.Count > 1)
+            if ((!moveto && (cardsCollecton.Count > 1) ) || (moveto && (cardsCollecton.Count > 4)))
                 return;
 
             // карта, которая двигается
@@ -152,18 +131,14 @@ namespace PokerTools
             // Положение главного канваса
             var coordsOfMainCanvas = transform.Transform(new Point(0, 0));
 
-            //transform = cardPlace.TransformToVisual(Application.Current.RootVisual);
-            //// Положение конечной карты, куда мы перемещаемся
-            //var destinationLocation = transform.Transform(new Point(0, 0));
-            //destinationLocation.X += card.Width;
-            
             //Вычисляем абсолютное положение грида
-            transform = this.playersCardsGrid.TransformToVisual(Application.Current.RootVisual);
+            transform = gridToMove.TransformToVisual(Application.Current.RootVisual);
+
             // Положение конечной карты, куда мы перемещаемся
             var destinationLocation = transform.Transform(new Point(0, 0));
             destinationLocation.X += 25;
-            destinationLocation.Y += 20;
-            destinationLocation.X += card.Width * (App.ViewModel.playerCards.Count);
+            destinationLocation.Y += 45;
+            destinationLocation.X += card.Width * (cardsCollecton.Count);
 
             transform = card.TransformToVisual(Application.Current.RootVisual);
             // Положение карты, на которую нажали
@@ -181,7 +156,6 @@ namespace PokerTools
 
             var cardForAdd = new CardViewModel() { CardImage = cardObject.CardImage, CardName = cardObject.CardName };
 
-            //cardObject.CardImage = "/PivotApp2;component/Images/cardplace_dark@2x.png";
             App.ViewModel.TestMyCol.RemoveCard((CardViewModel)card.DataContext);
 
             // Смещение от выбранной карты до конечного положения (на какое расстояние двигать)
@@ -213,6 +187,7 @@ namespace PokerTools
         {
             if (!this.isCardBoardOpened)
             {
+                this.moveTo = false;
                 this.isCardBoardOpened = true;
                 this.movePanels(-20, 328, 328, 0.3);
             }
@@ -232,5 +207,20 @@ namespace PokerTools
             //App.ViewModel.allSpades.Remove(itemForDelete.First());
         }
         //System.Windows.MessageBox.Show("qwe");
+
+        private void Image_Tap2(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            this.moveTo = true;
+            if (!this.isCardBoardOpened)
+            {
+                this.isCardBoardOpened = true;
+                this.movePanels(-400, -182, 166, 0.3);
+            }
+            else
+            {
+                this.isCardBoardOpened = false;
+                this.movePanels(0, 0, 0, 0.3);
+            }
+        }
     }
 }

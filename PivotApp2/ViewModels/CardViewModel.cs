@@ -6,8 +6,8 @@
     {
         private string _cardName;
         private string _cardImage;
-        private string _suit;
-        private string _rank;
+        private Suits _suit;
+        private Ranks _rank;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -26,6 +26,38 @@
                 }
             }
         }
+
+        public Suits Suit
+        {
+            get
+            {
+                return _suit;
+            }
+            set
+            {
+                if (value != _suit)
+                {
+                    _suit = value;
+                    NotifyPropertyChanged("Suit");
+                }
+            }
+        }
+
+        //public string Rank
+        //{
+        //    get
+        //    {
+        //        return _rank;
+        //    }
+        //    set
+        //    {
+        //        if (value != _rank)
+        //        {
+        //            _rank = value;
+        //            NotifyPropertyChanged("Rank");
+        //        }
+        //    }
+        //}
 
         public string CardImage
         {

@@ -1,29 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using Microsoft.Phone.Controls;
-using System.Windows.Media.Imaging;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
-using System.Collections;
-using PokerTools.ViewModels;
-
-namespace PokerTools
+﻿namespace PokerTools
 {
+    using System;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media.Animation;
+    using Microsoft.Phone.Controls;
+    using System.Windows.Media.Imaging;
+    using System.Collections.ObjectModel;
+    using PokerTools.ViewModels;
+
     public partial class MainPage : PhoneApplicationPage
     {
         private bool isCardBoardOpened;
 
         private bool moveTo; // 0 playerCards, 1 cardBoard
+        //private ObservableCollection<CardsCollection> cardBoardBySuitList;
 
         // Конструктор
         public MainPage()
@@ -44,6 +35,7 @@ namespace PokerTools
             var im = new Image {Source = bi, Height = 100, Width = 80};
             this.moveTo = false;
 
+            //this.cardBoardBySuitList = new ObservableCollection<CardsCollection> { App.ViewModel.AllSpades, App.ViewModel.AllHearts };
         }
 
         // Загрузка данных для элементов ViewModel
@@ -107,15 +99,18 @@ namespace PokerTools
             if (moveto == false)
             {
                 gridToMove = this.playersCardsGrid;
-                cardsCollecton = App.ViewModel.playerCards;
+                cardsCollecton = App.ViewModel.PlayerCards;
             }
             else
             {
                 gridToMove = this.tableCardsGrid;
-                cardsCollecton = App.ViewModel.tableCards;
+                cardsCollecton = App.ViewModel.TableCards;
             }
 
             var cardObject = (ViewModels.CardViewModel)card.DataContext;
+
+            var currentCardBoard = App.ViewModel.CardBoardBySuitList[this.CardBoardPivot.SelectedIndex];
+
 
             if (cardObject.CardName == "emptyCard")
                 return;
@@ -156,7 +151,8 @@ namespace PokerTools
 
             var cardForAdd = new CardViewModel() { CardImage = cardObject.CardImage, CardName = cardObject.CardName };
 
-            App.ViewModel.TestMyCol.RemoveCard((CardViewModel)card.DataContext);
+            currentCardBoard.RemoveCard((CardViewModel)card.DataContext);
+            
 
             // Смещение от выбранной карты до конечного положения (на какое расстояние двигать)
             offsetX = destinationLocation.X - sourceLocation.X;
@@ -201,11 +197,8 @@ namespace PokerTools
         private void Image_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
         {
             this.moveCard((Image)sender, moveTo, 0.3);
-            //App.ViewModel.allSpades.RemoveAt(1);
-            //var itemForDelete = App.ViewModel.allSpades.Where( (ItemViewModel a) => 
-            //    a.Image == ((Image)sender).Source[0].ToString() );
-            //App.ViewModel.allSpades.Remove(itemForDelete.First());
         }
+
         //System.Windows.MessageBox.Show("qwe");
 
         private void Image_Tap2(object sender, System.Windows.Input.GestureEventArgs e)

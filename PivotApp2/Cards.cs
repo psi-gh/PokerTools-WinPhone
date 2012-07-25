@@ -21,7 +21,7 @@ namespace PokerTools
 
         private IEnumerable<Enum> GetValues(Enum enumeration)
         {
-            List<Enum> enumerations = new List<Enum>();
+            var enumerations = new List<Enum>();
             foreach (FieldInfo fieldInfo in enumeration.GetType().GetFields(
                   BindingFlags.Static | BindingFlags.Public))
             {

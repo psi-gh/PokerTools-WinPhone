@@ -33,7 +33,7 @@
                                 <Image Source="/PivotApp2;component/Images/Background.png" VerticalAlignment="Top"></Image>
                             </StackPanel>
                             
-                            <ItemsControl x:Name="upperPanel" ItemsSource="{Binding playerCards}" Margin="25,45,0,0">
+                            <ItemsControl x:Name="upperPanel" ItemsSource="{Binding PlayerCards}" Margin="25,45,0,0">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <toolkit:WrapPanel Name="playerWrapPanel"/>
@@ -48,13 +48,13 @@
                         </Grid>
 
                         <!--middle cards grid-->
-                        <Grid x:Name="tableCardsGrid" FlowDirection="LeftToRight" Margin="0,162,0,0" Height="162" VerticalAlignment="Top" Width="450" Canvas.ZIndex="1">
+                        <Grid x:Name="tableCardsGrid" FlowDirection="LeftToRight" Margin="0,162,0,0" Height="162" VerticalAlignment="Top" Width="450" Canvas.ZIndex="1" Visibility="Collapsed">
                             <StackPanel>
                                 <Image Source="/PivotApp2;component/Images/Background.png" Margin="0,-162,0,0"></Image>
                             </StackPanel>
                             <Image Source="/PivotApp2;component/Images/table_bg@2x.png" ></Image>
 
-                            <ItemsControl x:Name="ItPanel" ItemsSource="{Binding tableCards}" Margin="25,45,0,0">
+                            <ItemsControl x:Name="ItPanel" ItemsSource="{Binding TableCards}" Margin="25,45,0,0">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <toolkit:WrapPanel />
@@ -69,19 +69,28 @@
                         </Grid>
 
                         <!--bottom grid-->
-                        <Grid x:Name="bottomGrid" Margin="0,324,0,0" Canvas.ZIndex="1"  Width="450" >
+                        <Grid x:Name="bottomGrid" Margin="0,324,0,0" Canvas.ZIndex="1"  Width="450" Visibility="Collapsed">
                             <StackPanel Height="256" VerticalAlignment="Top">
                                 <Image Source="/PivotApp2;component/Images/Background.png" Margin="0,-324,0,0"></Image>
                             </StackPanel>
                         </Grid>
 
                         <!--cardboard-->
-                        <Grid x:Name="cardBoardGrid" Margin="0,140,0,0" Canvas.ZIndex="0"  Width="450" Visibility="Visible">
+                        <Grid x:Name="cardBoardGrid" Margin="0,140,0,0" Canvas.ZIndex="0"  Width="450" >
                             <StackPanel>
                                 <Image Source="/PivotApp2;component/Images/cardBoardBackground@2x.png" Height="350" Width="442" Stretch="UniformToFill"></Image>
                             </StackPanel>
 
-                            <ItemsControl x:Name="cardBoardPanel" ItemsSource="{Binding TestMyCol}" Margin="25,15,25,0">
+                            <controls:Pivot Margin="10,0,0,0" Name="CardBoardPivot" ItemsSource="{Binding CardBoardBySuitList}">
+                                <controls:Pivot.ItemTemplate>
+                                    <DataTemplate>
+                                        <toolkit:WrapPanel>
+                                            <TextBlock Text="qwewqwegwahgjkl"></TextBlock>
+                                        </toolkit:WrapPanel>
+                                    </DataTemplate>
+                                </controls:Pivot.ItemTemplate>
+                            </controls:Pivot>
+                            <!--<ItemsControl x:Name="cardBoardPanel" ItemsSource="{Binding TestMyCol}" Margin="25,15,25,0">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <toolkit:WrapPanel/>
@@ -94,7 +103,7 @@
                                         </Canvas>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
-                            </ItemsControl>
+                            </ItemsControl>-->
 
                         </Grid>
                     </Canvas>

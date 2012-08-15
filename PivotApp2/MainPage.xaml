@@ -81,14 +81,57 @@
                                 <Image Source="/PivotApp2;component/Images/cardBoardBackground@2x.png" Height="350" Width="442" Stretch="UniformToFill"></Image>
                             </StackPanel>
 
-                            <controls:Pivot Margin="10,0,0,0" Name="CardBoardPivot" ItemsSource="{Binding CardBoardBySuitList}">
+                            <controls:Pivot Margin="10,0,0,0" Name="CardBoardPivot">
+                                <!--<controls:Pivot.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Image}"></TextBlock>
+                                    </DataTemplate>
+                                </controls:Pivot.HeaderTemplate>
                                 <controls:Pivot.ItemTemplate>
                                     <DataTemplate>
-                                        <toolkit:WrapPanel>
-                                            <TextBlock Text="qwewqwegwahgjkl"></TextBlock>
-                                        </toolkit:WrapPanel>
+                                        <ListBox ItemsSource="{Binding Items.Key}">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Image}"></TextBlock>
+                                                </DataTemplate>
+                                             </ListBox.ItemTemplate>
+                                        </ListBox>
                                     </DataTemplate>
-                                </controls:Pivot.ItemTemplate>
+                                </controls:Pivot.ItemTemplate>-->
+                                <controls:PivotItem>
+                                    <ItemsControl x:Name="spadesCardBoardPanel" ItemsSource="{Binding AllSpades}" Margin="25,15,25,0">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <toolkit:WrapPanel/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Canvas Height="100" Width="80">
+                                                    <Image Height="100" Width="80" Source="{Binding CardImage}" Margin="0,0,0,10" Tap="Image_Tap_1"></Image>
+                                                </Canvas>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </controls:PivotItem>
+
+                                <controls:PivotItem>
+                                    <ItemsControl x:Name="heartsCardBoardPanel" ItemsSource="{Binding AllHearts}" Margin="25,15,25,0">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <toolkit:WrapPanel/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Canvas Height="100" Width="80">
+                                                    <Image Height="100" Width="80" Source="{Binding CardImage}" Margin="0,0,0,10" Tap="Image_Tap_1"></Image>
+                                                </Canvas>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </controls:PivotItem>
+                                
                             </controls:Pivot>
                             <!--<ItemsControl x:Name="cardBoardPanel" ItemsSource="{Binding TestMyCol}" Margin="25,15,25,0">
                                 <ItemsControl.ItemsPanel>

@@ -23,7 +23,7 @@
 
             this.CardBoardBySuitList = new ObservableCollection<CardsCollection> { AllSpades, AllHearts };
 
-            this.AllCards = new CardsCollection("/PivotApp2;component/Images/cardplace_dark@2x.png", 10);
+            this.AllCards = new CardsCollection("/PivotApp2;component/Images/cardplace_dark@2x.png", 12);
         }
 
         /// <summary>
@@ -86,11 +86,14 @@
         {
             // Пример данных; замените реальными данными
             //this.items.Add(new ItemViewModel("/PivotApp2;component/Images/Cards/3piki.png"));
-            this.items.Add(new ItemViewModel() { CardName = "31", Image = "/PivotApp2;component/Images/Cards/2chervi.png" });
-            this.items.Add(new ItemViewModel() { CardName = "41", Image = "/PivotApp2;component/Images/Cards/3piki.png" });
-            this.items.Add(new ItemViewModel() { CardName = "51", Image = "/PivotApp2;component/Images/Cards/2chervi.png" });
-            this.items.Add(new ItemViewModel() { CardName = "61", Image = "/PivotApp2;component/Images/Cards/2chervi.png" });
+            this.items.Add(new ItemViewModel() { CardName = "1", Image = "/PivotApp2;component/Images/Cards/2chervi.png" });
+            this.items.Add(new ItemViewModel() { CardName = "1", Image = "/PivotApp2;component/Images/Cards/3piki.png" });
+            this.items.Add(new ItemViewModel() { CardName = "2", Image = "/PivotApp2;component/Images/Cards/2piki.png" });
+            this.items.Add(new ItemViewModel() { CardName = "2", Image = "/PivotApp2;component/Images/Cards/2chervi.png" });
+            this.items.Add(new ItemViewModel() { CardName = "3", Image = "/PivotApp2;component/Images/Cards/2piki.png" });
+            this.items.Add(new ItemViewModel() { CardName = "3", Image = "/PivotApp2;component/Images/Cards/2chervi.png" });
 
+            CreateItemsSource(items);
             //this.tableCards.Add(new ItemViewModel() { CardName = "31", CardImage = "/PivotApp2;component/Images/cardplace_h@2x.png" });
             //this.tableCards.Add(new ItemViewModel() { CardName = "31", Image = "/PivotApp2;component/Images/cardplace_h@2x.png" });
             //this.tableCards.Add(new ItemViewModel() { CardName = "31", Image = "/PivotApp2;component/Images/cardplace_h@2x.png" });
